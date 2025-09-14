@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projects — Shivanand Kundargi">
+  <title>Projects · Shivanand Kundargi</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="nav" id="navbar-main">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">Shivanand Kundargi</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html" aria-current="page">Projects</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main">
+    <section class="home-section">
+      <div class="container">
+        <div class="section-heading"><h2>Projects</h2></div>
+        <div class="projects-toolbar" aria-label="Project filters">
+          <button class="filter-btn active" data-filter="*">All</button>
+          <button class="filter-btn" data-filter=".continual">Continual Learning</button>
+          <button class="filter-btn" data-filter=".llm">LLMs</button>
+          <button class="filter-btn" data-filter=".vision">Vision</button>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card continual">
+            <a class="card-image" href="#" aria-label="SACK project">
+              <img class="img" src="img/projects/sack.svg" alt="SACK project thumbnail">
+            </a>
+            <div class="card-text">
+              <h3>SACK: Sequentially Acquiring Concepts for Continual Learning</h3>
+              <p>Concept-based importance sampling to mitigate catastrophic forgetting and preserve learned concepts.</p>
+            </div>
+          </article>
+          <article class="project-card continual vision">
+            <a class="card-image" href="#" aria-label="Unlearning and adversaries">
+              <img class="img" src="img/projects/unlearning.svg" alt="Unlearning adversaries project thumbnail">
+            </a>
+            <div class="card-text">
+              <h3>Can Unlearning Mitigate Adversaries in Continual Learning?</h3>
+              <p>Exploring machine unlearning to enhance robustness against adversarial examples in continual setups.</p>
+            </div>
+          </article>
+          <article class="project-card llm">
+            <a class="card-image" href="#" aria-label="Non-monotonic reasoning in LLMs">
+              <img class="img" src="img/projects/llm.svg" alt="LLM reasoning project thumbnail">
+            </a>
+            <div class="card-text">
+              <h3>Non-Monotonic Reasoning for Context Shift in LLMs</h3>
+              <p>Reasoning chains to better handle context shifts in conversation beyond history bias.</p>
+            </div>
+          </article>
+          <article class="project-card vision">
+            <a class="card-image" href="#" aria-label="Narrative grounded video summarization">
+              <img class="img" src="img/projects/video.svg" alt="Narrative grounded video summarization project thumbnail">
+            </a>
+            <div class="card-text">
+              <h3>Narrative Grounded Video Summarization</h3>
+              <p>Measuring narrative deviation when adversaries are introduced in videos for robust understanding.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 Shivanand Kundargi · Projects</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

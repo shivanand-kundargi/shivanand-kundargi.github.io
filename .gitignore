@@ -1,0 +1,16 @@
+# Node, Python and OS cruft
+node_modules/
+.DS_Store
+Thumbs.db
+.env
+.venv/
+__pycache__/
+*.pyc
+
+# Build artifacts
+dist/
+build/
+
+# Editor settings
+.vscode/
+.idea/
