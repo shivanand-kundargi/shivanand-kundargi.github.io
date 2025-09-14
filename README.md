@@ -150,7 +150,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## Contact
 
-- **Email**: shivanand@example.com
+- **Email**: shivanandkundargi992@gmail.com
 - **LinkedIn**: [linkedin.com/in/shivanandkundargi](https://linkedin.com/in/shivanandkundargi)
 - **GitHub**: [github.com/shivanandkundargi](https://github.com/shivanandkundargi)
 
