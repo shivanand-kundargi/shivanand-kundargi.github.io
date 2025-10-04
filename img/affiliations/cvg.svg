@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 80" role="img" aria-labelledby="title desc">
+  <title id="title">Computer Vision Group badge</title>
+  <desc id="desc">Circular motif with CVG initials.</desc>
+  <rect width="160" height="80" rx="12" ry="12" fill="#1f1f1f"/>
+  <circle cx="80" cy="40" r="26" fill="#ffffff" opacity="0.1"/>
+  <circle cx="80" cy="40" r="22" fill="#337ab7" opacity="0.85"/>
+  <text x="80" y="46" font-family="'Montserrat', Arial, sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#fff">CVG</text>
+</svg>
