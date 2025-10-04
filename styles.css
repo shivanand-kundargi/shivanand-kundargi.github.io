@@ -71,8 +71,8 @@ body {
 /* Publications (card style) */
 .pubs { display: grid; gap: 22px; }
 .pub-year { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; color: var(--fg); margin-top: 8px; }
-.pub-card { display: grid; grid-template-columns: 220px 1fr; gap: 16px; padding: 14px; border: 1px solid var(--border); border-radius: 10px; background: #fff; }
-.pub-thumb { width: 220px; aspect-ratio: 16 / 9; height: auto; border: 1px solid var(--border); border-radius: 6px; background: #fff; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 6px; }
+.pub-card { display: grid; grid-template-columns: 220px 1fr; gap: 16px; padding: 14px; border: 1px solid var(--border); border-radius: 10px; background: #fff; align-items: start; }
+.pub-thumb { width: 220px; aspect-ratio: 16 / 9; height: auto; border: 1px solid var(--border); border-radius: 6px; background: #fff; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 6px; align-self: start; }
 .pub-thumb img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
 .pub-meta { display: grid; gap: 6px; }
 .pub-title { font-weight: 700; color: var(--fg); }
