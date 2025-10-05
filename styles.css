@@ -54,7 +54,9 @@ body {
 .social a { color: var(--primary); text-decoration: none; font-weight: 500; }
 .social a:hover { text-decoration: underline; }
 .about-text h2 { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 24px; margin-bottom: 12px; }
-.about-text p { margin: 0 0 12px 0; }
+.about-text p { margin: 0 0 12px 0; text-align: justify; text-justify: inter-word; }
+
+.content p { text-align: justify; text-justify: inter-word; }
 
 /* Projects */
 .projects-toolbar { display: flex; gap: 8px; margin: 12px 0 20px; flex-wrap: wrap; }
