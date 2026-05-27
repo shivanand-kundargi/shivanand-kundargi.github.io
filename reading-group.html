@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Reading Group — Shivanand Kundargi">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Reading Group · Shivanand Kundargi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Reading group specific styles */
+    .rg-hero {
+      text-align: center;
+      padding: 40px 0 0;
+    }
+    .rg-hero h1 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 36px;
+      letter-spacing: -0.5px;
+      color: var(--fg-heading);
+      margin-bottom: 12px;
+    }
+    .rg-hero .rg-subtitle {
+      color: var(--fg-muted);
+      font-size: 16px;
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .rg-section {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .rg-section:last-of-type { border-bottom: 0; }
+
+    .rg-section h2 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--fg-heading);
+      letter-spacing: -0.3px;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px;
+    }
+    .rg-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 36px;
+      height: 3px;
+      background: var(--accent-gradient);
+      border-radius: 2px;
+    }
+
+    /* Schedule card */
+    .rg-schedule-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px 28px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      max-width: 480px;
+      position: relative;
+      overflow: hidden;
+    }
+    .rg-schedule-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 15%;
+      right: 15%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(129, 140, 248, 0.3), transparent);
+    }
+    .rg-schedule-card .rg-detail {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      color: var(--fg-body);
+    }
+    .rg-schedule-card .rg-detail:last-child { margin-bottom: 0; }
+    .rg-schedule-card .rg-label {
+      font-weight: 600;
+      color: var(--fg-heading);
+      min-width: 80px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Paper list table */
+    .rg-papers {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 14.5px;
+    }
+    .rg-papers thead th {
+      text-align: left;
+      padding: 12px 16px;
+      background: var(--bg-elevated);
+      color: var(--fg-heading);
+      font-weight: 600;
+      font-size: 12.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border);
+    }
+    .rg-papers thead th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+    .rg-papers thead th:last-child { border-radius: 0 var(--radius-sm) 0 0; }
+    .rg-papers tbody td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--fg-body);
+      vertical-align: top;
+    }
+    .rg-papers tbody tr:last-child td { border-bottom: none; }
+    .rg-papers tbody tr {
+      transition: background 0.2s var(--ease);
+    }
+    .rg-papers tbody tr:hover {
+      background: var(--bg-card);
+    }
+    .rg-papers .rg-paper-title {
+      font-weight: 600;
+      color: var(--fg-heading);
+    }
+    .rg-papers .rg-paper-title a {
+      color: var(--accent-solid);
+      border-bottom: 1px solid rgba(129, 140, 248, 0.15);
+    }
+    .rg-papers .rg-paper-title a:hover {
+      color: var(--accent-hover);
+      border-bottom-color: var(--accent-hover);
+    }
+
+    /* Members grid */
+    .rg-members {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+    }
+    .rg-members li {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      color: var(--fg-body);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .rg-members li a {
+      color: var(--accent-solid);
+    }
+    .rg-members li a:hover {
+      color: var(--accent-hover);
+    }
+
+    /* Placeholder hint */
+    .rg-placeholder {
+      color: var(--fg-muted);
+      font-style: italic;
+      font-size: 14px;
+      padding: 16px 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .rg-papers thead { display: none; }
+      .rg-papers tbody td {
+        display: block;
+        padding: 8px 12px;
+        border-bottom: none;
+      }
+      .rg-papers tbody td:first-child { padding-top: 14px; }
+      .rg-papers tbody td:last-child {
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .rg-papers tbody td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--fg-muted);
+        margin-bottom: 4px;
+        font-weight: 600;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Minimal nav — links back to main site only -->
+  <nav class="nav" id="navbar-main">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">Shivanand Kundargi</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main">
+    <!-- Hero -->
+    <section class="home-section rg-hero animate-in">
+      <div class="container">
+        <h1>📖 Reading Group</h1>
+        <p class="rg-subtitle">A collaborative reading group exploring recent advances in machine learning research. We meet regularly to discuss papers and share insights.</p>
+      </div>
+    </section>
+
+    <!-- Schedule -->
+    <section class="rg-section animate-in">
+      <div class="container">
+        <h2>Schedule</h2>
+        <div class="rg-schedule-card">
+          <div class="rg-detail">
+            <span class="rg-label">When</span>
+            <span>TBD</span>
+          </div>
+          <div class="rg-detail">
+            <span class="rg-label">Where</span>
+            <span>TBD</span>
+          </div>
+          <div class="rg-detail">
+            <span class="rg-label">Format</span>
+            <span>TBD</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Paper List -->
+    <section class="rg-section animate-in">
+      <div class="container">
+        <h2>Papers</h2>
+        <table class="rg-papers">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Paper</th>
+              <th>Presenter</th>
+              <th>Resources</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Date">TBD</td>
+              <td data-label="Paper"><span class="rg-paper-title"><a href="#">Paper title here</a></span></td>
+              <td data-label="Presenter">TBD</td>
+              <td data-label="Resources"><a href="#">Slides</a></td>
+            </tr>
+            <!-- Add more rows as needed:
+            <tr>
+              <td data-label="Date">June 10, 2025</td>
+              <td data-label="Paper"><span class="rg-paper-title"><a href="https://arxiv.org/abs/...">Paper Title</a></span></td>
+              <td data-label="Presenter">Name</td>
+              <td data-label="Resources"><a href="#">Slides</a> · <a href="#">Notes</a></td>
+            </tr>
+            -->
+          </tbody>
+        </table>
+        <p class="rg-placeholder">More papers will be added here.</p>
+      </div>
+    </section>
+
+    <!-- Members -->
+    <section class="rg-section animate-in">
+      <div class="container">
+        <h2>Members</h2>
+        <ul class="rg-members">
+          <li><a href="index.html">Shivanand Kundargi</a></li>
+          <!-- Add more members:
+          <li><a href="https://...">Member Name</a></li>
+          <li>Member Name (no link)</li>
+          -->
+        </ul>
+        <p class="rg-placeholder">More members will be listed here.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Shivanand Kundargi · Reading Group</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
