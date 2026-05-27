@@ -34,26 +34,63 @@ document.addEventListener('DOMContentLoaded', function() {
   if (filterButtons.length && cards.length) {
     filterButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        // active state
         filterButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
         const filter = btn.getAttribute('data-filter');
         cards.forEach(card => {
-          if (filter === '*' || card.matches(filter)) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
+          card.style.display = (filter === '*' || card.matches(filter)) ? '' : 'none';
         });
       });
     });
   }
 
-  // Simple scroll effect for navbar
+  // Navbar scroll effect — add .scrolled class for enhanced glassmorphism
   const nav = document.querySelector('.nav');
-  window.addEventListener('scroll', function() {
-    if (!nav) return;
-    nav.style.boxShadow = window.scrollY > 50 ? '0 2px 10px rgba(0,0,0,0.1)' : 'none';
-  });
+  if (nav) {
+    function updateNav() {
+      if (window.scrollY > 32) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+  }
+
+  // Scroll-driven entrance animations via IntersectionObserver
+  const animatedElements = document.querySelectorAll('.animate-in');
+  if (animatedElements.length && 'IntersectionObserver' in window) {
+    // Track how many elements have been revealed so we can stagger
+    let revealDelay = 0;
+
+    const observer = new IntersectionObserver(
+      function(entries) {
+        // Sort entries by their position in the DOM for consistent staggering
+        const visibleEntries = entries.filter(e => e.isIntersecting);
+
+        visibleEntries.forEach(function(entry, index) {
+          // Small stagger: each element in the same batch gets a slight delay
+          const delay = index * 80; // 80ms between each
+          setTimeout(function() {
+            entry.target.classList.add('visible');
+          }, delay);
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: '0px 0px -30px 0px'
+      }
+    );
+
+    animatedElements.forEach(function(el) {
+      observer.observe(el);
+    });
+  } else {
+    // Fallback: make everything visible immediately
+    animatedElements.forEach(function(el) {
+      el.classList.add('visible');
+    });
+  }
 });
