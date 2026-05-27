@@ -182,29 +182,12 @@
       padding: 16px 0;
     }
 
-    /* Responsive */
-    @media (max-width: 600px) {
-      .rg-papers thead { display: none; }
-      .rg-papers tbody td {
-        display: block;
-        padding: 8px 12px;
-        border-bottom: none;
-      }
-      .rg-papers tbody td:first-child { padding-top: 14px; }
-      .rg-papers tbody td:last-child {
-        padding-bottom: 14px;
-        border-bottom: 1px solid var(--border-subtle);
-      }
-      .rg-papers tbody td::before {
-        content: attr(data-label);
-        display: block;
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: var(--fg-muted);
-        margin-bottom: 4px;
-        font-weight: 600;
-      }
+    /* Responsive Table Wrapper */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 24px;
     }
   </style>
 </head>
@@ -232,7 +215,7 @@
         <p class="rg-subtitle">This is a reading group for PhD students broadly working in <strong style="color: var(--accent-solid);">ML and AI</strong> with the goal of fostering a deeper understanding of concepts and topics related to recent research advancements. Our discussions span core domains including but not limited to <strong style="color: var(--accent-solid);">robustness, interpretability, lifelong and agentic learning.</strong></p>
         
         <div style="margin-top: 28px; display: inline-flex; flex-direction: column; gap: 10px; font-size: 16px; text-align: left; background: var(--bg-card); padding: 20px 36px; border-radius: var(--radius-md); border: 1px solid var(--border);">
-          <div><strong style="color: var(--fg-heading);">When:</strong> Fridays, 2:00 PM – 3:00 PM EST</div>
+          <div><strong style="color: var(--fg-heading);">When:</strong> Saturdays, 2:00 PM – 3:00 PM EST</div>
           <div><strong style="color: var(--fg-heading);">Sign up:</strong> <a href="https://docs.google.com/forms/d/e/1FAIpQLSdNg4x60lUHV7YW_kKPFlpPR3Rom_rOovbryD8YtOGQR8x0Kw/viewform" target="_blank" style="font-weight: 500;">Sign up via Google Forms</a></div>
         </div>
       </div>
@@ -242,97 +225,119 @@
     <section class="rg-section animate-in">
       <div class="container">
         <h2>Schedule</h2>
-        <table class="rg-papers">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Presenter</th>
-              <th>Domain</th>
-              <th>Paper name</th>
-              <th>Slides link/notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Date">May 29</td>
-              <td data-label="Presenter">Shivanand</td>
-              <td data-label="Domain">Robustness</td>
-              <td data-label="Paper name"><span class="rg-paper-title"><a href="#">Paper title here</a></span></td>
-              <td data-label="Slides link/notes"><a href="#">Slides</a></td>
-            </tr>
-            <tr>
-              <td data-label="Date">June 5</td>
-              <td data-label="Presenter">TBD</td>
-              <td data-label="Domain">TBD</td>
-              <td data-label="Paper name"><span class="rg-paper-title">TBD</span></td>
-              <td data-label="Slides link/notes">TBD</td>
-            </tr>
-            <tr>
-              <td data-label="Date">June 12</td>
-              <td data-label="Presenter">TBD</td>
-              <td data-label="Domain">TBD</td>
-              <td data-label="Paper name"><span class="rg-paper-title">TBD</span></td>
-              <td data-label="Slides link/notes">TBD</td>
-            </tr>
-            <tr>
-              <td data-label="Date">June 19</td>
-              <td data-label="Presenter">TBD</td>
-              <td data-label="Domain">TBD</td>
-              <td data-label="Paper name"><span class="rg-paper-title">TBD</span></td>
-              <td data-label="Slides link/notes">TBD</td>
-            </tr>
-            <tr>
-              <td data-label="Date">June 26</td>
-              <td data-label="Presenter">TBD</td>
-              <td data-label="Domain">TBD</td>
-              <td data-label="Paper name"><span class="rg-paper-title">TBD</span></td>
-              <td data-label="Slides link/notes">TBD</td>
-            </tr>
-            <tr>
-              <td data-label="Date">July 3</td>
-              <td data-label="Presenter">TBD</td>
-              <td data-label="Domain">TBD</td>
-              <td data-label="Paper name"><span class="rg-paper-title">TBD</span></td>
-              <td data-label="Slides link/notes">TBD</td>
-            </tr>
-            <tr>
-              <td data-label="Date">July 10</td>
-              <td data-label="Presenter">TBD</td>
-              <td data-label="Domain">TBD</td>
-              <td data-label="Paper name"><span class="rg-paper-title">TBD</span></td>
-              <td data-label="Slides link/notes">TBD</td>
-            </tr>
-            <tr>
-              <td data-label="Date">July 17</td>
-              <td data-label="Presenter">TBD</td>
-              <td data-label="Domain">TBD</td>
-              <td data-label="Paper name"><span class="rg-paper-title">TBD</span></td>
-              <td data-label="Slides link/notes">TBD</td>
-            </tr>
-            <tr>
-              <td data-label="Date">July 24</td>
-              <td data-label="Presenter">TBD</td>
-              <td data-label="Domain">TBD</td>
-              <td data-label="Paper name"><span class="rg-paper-title">TBD</span></td>
-              <td data-label="Slides link/notes">TBD</td>
-            </tr>
-            <tr>
-              <td data-label="Date">July 31</td>
-              <td data-label="Presenter">TBD</td>
-              <td data-label="Domain">TBD</td>
-              <td data-label="Paper name"><span class="rg-paper-title">TBD</span></td>
-              <td data-label="Slides link/notes">TBD</td>
-            </tr>
-            <tr>
-              <td data-label="Date">August 7</td>
-              <td data-label="Presenter">TBD</td>
-              <td data-label="Domain">TBD</td>
-              <td data-label="Paper name"><span class="rg-paper-title">TBD</span></td>
-              <td data-label="Slides link/notes">TBD</td>
-            </tr>
-
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="rg-papers" style="min-width: 600px;">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Presenter</th>
+                <th>Domain</th>
+                <th>Paper name</th>
+                <th>Slides link/notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>May 30</td>
+                <td>Shivanand</td>
+                <td>Robustness</td>
+                <td><span class="rg-paper-title"><a href="#">Paper title here</a></span></td>
+                <td><a href="#">Slides</a></td>
+              </tr>
+              <tr>
+                <td>June 6</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td><span class="rg-paper-title">TBD</span></td>
+                <td>TBD</td>
+              </tr>
+              <tr>
+                <td>June 13</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td><span class="rg-paper-title">TBD</span></td>
+                <td>TBD</td>
+              </tr>
+              <tr>
+                <td>June 20</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td><span class="rg-paper-title">TBD</span></td>
+                <td>TBD</td>
+              </tr>
+              <tr>
+                <td>June 27</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td><span class="rg-paper-title">TBD</span></td>
+                <td>TBD</td>
+              </tr>
+              <tr>
+                <td>July 4</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td><span class="rg-paper-title">TBD</span></td>
+                <td>TBD</td>
+              </tr>
+              <tr>
+                <td>July 11</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td><span class="rg-paper-title">TBD</span></td>
+                <td>TBD</td>
+              </tr>
+              <tr>
+                <td>July 18</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td><span class="rg-paper-title">TBD</span></td>
+                <td>TBD</td>
+              </tr>
+              <tr>
+                <td>July 25</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td><span class="rg-paper-title">TBD</span></td>
+                <td>TBD</td>
+              </tr>
+              <tr>
+                <td>August 1</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td><span class="rg-paper-title">TBD</span></td>
+                <td>TBD</td>
+              </tr>
+              <tr>
+                <td>August 8</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td><span class="rg-paper-title">TBD</span></td>
+                <td>TBD</td>
+              </tr>
+              <tr>
+                <td>August 15</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td><span class="rg-paper-title">TBD</span></td>
+                <td>TBD</td>
+              </tr>
+              <tr>
+                <td>August 22</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td><span class="rg-paper-title">TBD</span></td>
+                <td>TBD</td>
+              </tr>
+              <tr>
+                <td>August 29</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td><span class="rg-paper-title">TBD</span></td>
+                <td>TBD</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <div class="rg-logistics" style="margin-top: 36px; padding: 28px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-md);">
           <h3 style="color: var(--fg-heading); font-family: 'Inter', sans-serif; font-size: 18px; margin-bottom: 16px;">Logistics</h3>
           <ul style="color: var(--fg-body); font-size: 15px; padding-left: 20px; line-height: 1.6;">
