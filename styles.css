@@ -484,14 +484,7 @@ button:focus-visible {
 /* ── News Timeline ───────────────────────────────────────────── */
 .news-list {
   margin-top: 0;
-  padding: 24px 24px 24px 36px;
-  max-height: 340px;
-  overflow-y: auto;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  background: var(--bg-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  padding: 8px 0 8px 24px;
   list-style: none;
   position: relative;
 }
@@ -499,9 +492,9 @@ button:focus-visible {
 .news-list::before {
   content: '';
   position: absolute;
-  left: 18px;
-  top: 24px;
-  bottom: 24px;
+  left: 6px;
+  top: 8px;
+  bottom: 8px;
   width: 2px;
   background: linear-gradient(to bottom, var(--accent-start), var(--accent-end), transparent);
   border-radius: 1px;
@@ -520,7 +513,7 @@ button:focus-visible {
 .news-list li::before {
   content: '';
   position: absolute;
-  left: -12px;
+  left: -22px;
   top: 7px;
   width: 8px;
   height: 8px;
@@ -534,14 +527,6 @@ button:focus-visible {
 .news-list a { border-bottom: 1px solid rgba(129, 140, 248, 0.2); }
 .news-list a:hover { border-bottom-color: var(--accent-hover); }
 
-/* Custom scrollbar */
-.news-list::-webkit-scrollbar { width: 5px; }
-.news-list::-webkit-scrollbar-track { background: transparent; }
-.news-list::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.15);
-  border-radius: 3px;
-}
-.news-list::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.3); }
 
 /* ── Projects ────────────────────────────────────────────────── */
 .projects-toolbar {
@@ -950,7 +935,6 @@ button:focus-visible {
   }
 
   .home-section { padding: 52px 0; }
-  .news-list { max-height: 260px; }
   .section-heading { margin-bottom: 24px; }
 }
 
