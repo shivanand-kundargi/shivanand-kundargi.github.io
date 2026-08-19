@@ -1,0 +1,542 @@
+/* ===== Base & Typography ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  color: #2d3748;
+  background: #fff;
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Color Palette (CSS Variables) ===== */
+:root {
+  --primary: #1a56db;
+  --primary-dark: #1e40af;
+  --primary-light: #dbeafe;
+  --accent: #6366f1;
+  --text-dark: #1e293b;
+  --text-body: #374151;
+  --text-muted: #6b7280;
+  --bg-soft: #f8fafc;
+  --bg-alt: #f1f5f9;
+  --border-light: #e2e8f0;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --radius: 12px;
+}
+
+/* ===== Hero / Header ===== */
+.hero {
+  background: transparent;
+  padding-bottom: 0 !important;
+}
+
+.hero-body {
+  padding-top: 3rem;
+  padding-bottom: 1.5rem;
+}
+
+/* ===== Publication Title ===== */
+.publication-title {
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+  font-weight: 700;
+  color: var(--text-dark);
+  font-size: 2rem;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.publication-subtitle {
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+  font-weight: 500;
+  color: var(--accent);
+  font-size: 1.3rem;
+  margin-top: 0.6rem;
+  letter-spacing: 0.01em;
+}
+
+/* ===== Authors ===== */
+.publication-authors {
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: var(--text-body);
+}
+
+.authors-block {
+  margin-bottom: 0.25rem;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.author-block a,
+.author-block a:visited,
+.author-block a:active {
+  color: var(--primary) !important;
+  font-weight: normal;
+  transition: color 0.2s;
+}
+
+.author-block a:hover {
+  color: var(--primary-dark) !important;
+  text-decoration: underline;
+}
+
+.publication-affiliations {
+  font-size: 1.02rem !important;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+/* ===== Link Buttons ===== */
+.publication-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.publication-links .link-block a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.25rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: #1e293b;
+  color: #fff !important;
+  border: none;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+}
+
+.publication-links .link-block a:hover {
+  background: #0f172a;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.publication-links .link-block a .icon {
+  font-size: 1.1rem;
+}
+
+.publication-links .link-block a.is-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.publication-links .link-block a.is-disabled:hover {
+  background: #1e293b;
+  box-shadow: var(--shadow-sm);
+  transform: none;
+}
+
+/* ===== Teaser & Abstract ===== */
+.abstract-block {
+  margin-bottom: 0;
+  padding-bottom: 2rem;
+}
+
+#teaser {
+  display: block;
+  margin: 0 auto 1.6rem;
+}
+
+#teaser img {
+  width: 100%;
+  max-width: 780px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.abstract-text {
+  margin-top: 0;
+}
+
+.abstract-text p {
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.02rem;
+  line-height: 1.72;
+  color: var(--text-body);
+}
+
+.abstract-text ul {
+  margin-top: 0.5rem;
+}
+
+.abstract-text li {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+/* ===== Sections ===== */
+.section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.section-compact {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.section .title.is-3,
+.section-compact .title.is-3 {
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.section-divider {
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 2px;
+  margin: 0.5rem auto 1.5rem;
+}
+
+/* ===== Highlight Box ===== */
+.highlight-box {
+  background: transparent;
+  border: none;
+  border-left: 4px solid var(--primary);
+  border-radius: 0;
+  padding: 0.8rem 1.6rem;
+  text-align: left;
+}
+
+.highlight-box ul {
+  margin-bottom: 0;
+  list-style: none;
+  padding-left: 0;
+}
+
+.highlight-box li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text-body);
+}
+
+.highlight-box li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 7px;
+  height: 7px;
+  background: var(--primary);
+  border-radius: 50%;
+}
+
+.highlight-box li + li {
+  margin-top: 0.65rem;
+}
+
+.highlight-box li strong {
+  color: var(--text-dark);
+}
+
+/* ===== Figures (generic container replacing static images) ===== */
+.figure-image {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.figure-caption {
+  margin-top: 1.2rem;
+  color: var(--text-body);
+  font-size: 1.02rem;
+  line-height: 1.72;
+  text-align: justify;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-intro {
+  max-width: 640px;
+  margin: 0 auto 2rem;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* ===== Discussion callout ===== */
+.discussion {
+  margin: 2rem auto 0;
+  max-width: 800px;
+  text-align: left;
+  background: var(--bg-soft);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.7rem;
+}
+
+.discussion h4 {
+  margin: 0 0 0.6rem;
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.discussion p {
+  margin: 0 0 0.75rem;
+  font-size: 0.98rem;
+  line-height: 1.68;
+  color: var(--text-body);
+}
+
+.discussion p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---- Figure rows (side-by-side paired figures) ---- */
+.figure-row {
+  display: flex;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.figure-item {
+  flex: 1 1 320px;
+  max-width: 420px;
+}
+
+/* Fixed-height frame so images of different aspect ratios still read as
+   the same size when placed side by side. */
+.img-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 260px;
+  padding: 1rem;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.img-frame img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.gallery-item .img-frame {
+  height: 200px;
+}
+
+.figure-item .cap,
+.gallery-item .cap {
+  margin-top: 0.7rem;
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+  text-align: center;
+}
+
+/* ---- Single full-width figure ---- */
+.figure-solo {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.figure-solo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.figure-solo + .figure-solo {
+  margin-top: 2.25rem;
+}
+
+/* ---- Gallery grid (multiple parallel evidence figures) ---- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 1.75rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  text-align: left;
+}
+
+.gallery-item .cap {
+  text-align: left;
+}
+
+.gallery-item .note {
+  margin-top: 0.35rem;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+/* ===== BibTeX ===== */
+.bibtex-section .title {
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.bibtex-note {
+  text-align: center;
+  font-size: 0.86rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin: -0.5rem 0 1.25rem;
+}
+
+.bibtex-block {
+  position: relative;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.bibtex-block pre {
+  background: transparent;
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-body);
+  overflow-x: auto;
+}
+
+.bibtex-block code {
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+}
+
+.bibtex-copy-btn {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.bibtex-copy-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+/* ===== Footer ===== */
+.site-footer {
+  background: transparent;
+  padding: 1.8rem 1rem;
+  margin-top: 1rem;
+}
+
+.site-footer p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.site-footer a {
+  color: var(--primary);
+  transition: color 0.2s;
+}
+
+.site-footer a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+.publication-venue {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #e74c3c;
+  letter-spacing: -0.01em;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .publication-title {
+    font-size: 1.5rem;
+  }
+
+  .publication-venue {
+    font-size: 1.5rem;
+  }
+
+  .publication-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .publication-authors {
+    font-size: 1rem;
+  }
+
+  .hero-body {
+    padding-top: 2rem;
+  }
+
+  .highlight-box {
+    padding: 1rem 1.2rem;
+  }
+
+  .section,
+  .section-compact {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}

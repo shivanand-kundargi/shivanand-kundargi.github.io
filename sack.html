@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Sequentially Acquiring Concept Knowledge to Guide Continual Learning — CoLLAs 2026">
+  <meta name="keywords" content="SACK, continual learning, concept extraction, curriculum learning, CLIP-Dissect, catastrophic forgetting, class-incremental, task-incremental">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SACK</title>
+  <link rel="icon" href="data:,">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="./static/css/sack.css">
+</head>
+
+<body>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+
+            <h1 class="title is-2 publication-title">
+              Sequentially Acquiring Concept Knowledge to Guide Continual Learning
+            </h1>
+            <p class="publication-subtitle">Teaching continual learner's what to prioritize next, guided by what they already know.</p>
+            <p class="publication-venue">CoLLAs 2026</p>
+
+            <br>
+
+            <div class="is-size-5 publication-authors authors-block">
+              <span class="author-block"><a href="mailto:shivank2@umbc.edu">Shivanand Kundargi</a><sup>1</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block"><a href="mailto:thopalli1@llnl.gov">Kowshik Thopalli</a><sup>2</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block"><a href="mailto:gokhale@umbc.edu">Tejas Gokhale</a><sup>1</sup></span>
+            </div>
+
+            <div class="is-size-6 publication-authors publication-affiliations">
+              <span class="author-block"><sup>1</sup> University of Maryland, Baltimore County</span>&nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="author-block"><sup>2</sup> Lawrence Livermore National Laboratory</span>
+            </div>
+
+            <div class="publication-links">
+              <span class="link-block">
+                <a class="is-disabled" href="javascript:void(0)" aria-disabled="true" title="Not yet published">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>Paper (TBD)</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/shivanand-kundargi/SACK-CL" target="_blank">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#BibTeX">
+                  <span class="icon"><i class="fas fa-quote-right"></i></span>
+                  <span>Cite</span>
+                </a>
+              </span>
+            </div>
+
+            <br>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Teaser + Abstract -->
+    <div class="container is-max-desktop abstract-block">
+      <div class="has-text-centered">
+
+        <div id="teaser">
+          <img src="./static/figs/fig1_overview.png" alt="Overview of SACK: a concept extractor reads the model's current knowledge, a concept-based scoring step compares it against the concepts of incoming classes, and the resulting class-wise weights guide training on the next experience.">
+        </div>
+
+        <div class="content has-text-justified abstract-text">
+          <p>
+            The goal of continual learning (CL) is to adapt to new data (plasticity) while retaining knowledge
+            acquired from old data (stability). Existing methods focus on balancing stability and plasticity to
+            mitigate catastrophic forgetting, but the impact of the <strong>order and nature</strong> of samples
+            a network trains on remains under-explored. We argue a CL algorithm should be able to rank incoming
+            samples by their relationship to prior data and their effect on learning.
+          </p>
+          <p>
+            We propose <strong>SACK</strong> (Sequentially Acquiring Concept Knowledge), a plug-and-play technique
+            that dissects a model's categorical knowledge into fine-grained concepts, computes the relationship
+            between previously-learned and new concepts at each experience, and uses this relationship to prioritize
+            new samples. Across regularization, replay, and prompt-based CL methods in both class- and
+            task-incremental settings, SACK improves accuracy, reduces forgetting, handles long-tailed distributions,
+            sharpens semantic grounding, and yields better-calibrated, more robust models, with negligible
+            computational overhead.
+          </p>
+         
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Highlights ===== -->
+  <section class="section section-compact" id="highlights">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Highlights</h2>
+      <span class="section-divider"></span>
+      <div class="highlight-box content">
+        <ul>
+            <li><strong>Concept-based curriculum</strong> — assigns importance weights to incoming classes from the semantic overlap between new-class concepts and the concepts the model has already activated.</li>
+            <li><strong>Model-, method-, setting-agnostic</strong> — drops into any CL approach with no architectural change, on ResNets and Vision Transformers alike.</li>
+            <li><strong>Extensive evaluation</strong> — CIFAR-100, fine-grained CUB-200, and distribution-shifted ImageNet-R, in class-incremental and task-incremental settings.</li>
+            <li><strong>Broad secondary benefits</strong> — better long-tail performance, sharper semantic grounding, and improved calibration, beyond accuracy and forgetting.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Method Overview ===== -->
+  <section class="section section-compact" id="method">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3">Method Overview</h2>
+      <span class="section-divider"></span>
+
+      <div class="figure-row">
+        <div class="figure-item">
+          <div class="img-frame">
+            <img src="./static/figs/fig2_extraction.png" alt="Concept extraction: CLIP image and text encoders produce similarity and activation matrices that reveal which natural-language concepts the model's neurons have come to represent.">
+          </div>
+          <div class="cap">Concept extraction</div>
+        </div>
+        <div class="figure-item">
+          <div class="img-frame">
+            <img src="./static/figs/fig3_scoring.png" alt="Concept-based scoring: activated concepts and new-class concepts are embedded with a CLIP text encoder, compared via cosine similarity, and aggregated into class-wise weights.">
+          </div>
+          <div class="cap">Concept-based scoring</div>
+        </div>
+      </div>
+
+      <div class="figure-caption">
+        SACK first asks what the model already knows: paired image and text encoders compare the model's neuron
+        activations against a growing vocabulary of natural-language concepts, surfacing the concepts each neuron
+        has come to represent (left). It then asks how the next experience relates to that knowledge, the
+        concepts describing each incoming class are compared against the model's activated concepts, and the
+        resulting similarities are aggregated into a single importance weight per class (right). 
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Results ===== -->
+  <section class="section section-compact" id="results">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3">Gains Across the Whole Stream</h2>
+      <span class="section-divider"></span>
+
+      <div class="figure-solo">
+        <img src="./static/figs/fig4_til_curves.png" alt="Accuracy after every experience, not just at the end of the stream, for LWF, iCaRL, and CODA-Prompt with and without SACK on a CIFAR-100 task-incremental stream.">
+      </div>
+
+      <div class="figure-caption">
+        A single final-accuracy number doesn't really convey about how a method behaves after each experience. In the figure above we check the performance of SACK on each experience for LWF, iCaRL, and CODA-Prompt on a CIFAR-100 task-incremental stream. We observe that at each experience, integration of SACK with any baseline method yields better performance than the baseline method alone.  The same pattern recurs on the fine-grained and
+        distribution-shifted benchmarks, and in the class-incremental setting, detailed in the paper.
+      </div>
+
+      <div class="discussion">
+        <h4 class="sans">Where SACK helps most</h4>
+        <p>Gains scale with how much of the network the base method actually updates. Prompt-based methods learn
+        only a small set of prompt parameters, so concept-based prioritization has comparatively little to act
+        on; replay- and regularization-based methods that update the full backbone see the clearest, most
+        consistent improvements, a pattern we observed across every backbone method tested.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Semantic Grounding ===== -->
+  <section class="section section-compact" id="grounding">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3">Learning to Look in the Right Place</h2>
+      <span class="section-divider"></span>
+
+      <div class="figure-solo">
+        <img src="./static/figs/fig6_gradcam.png" alt="Grad-CAM attention maps on CUB-200 bird images across early, middle, and late experiences, comparing DER with DER trained under the SACK curriculum.">
+      </div>
+
+      <div class="figure-caption">
+        Grad-CAM attention on fine-grained bird images, tracked across early, middle, and late experiences of a
+        CUB-200 stream. In each pair, the left map is a replay-based baseline (DER); the right is the same method
+        trained under the SACK curriculum. As the stream progresses, the baseline's attention increasingly drifts
+        toward background texture, while the SACK-guided model keeps anchoring on the head, beak, and other parts
+        that actually distinguish one species from another, a visual sign that the model is still reasoning about
+        the concepts it was meant to learn, rather than leaning on incidental shortcuts.
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Robustness ===== -->
+  <section class="section section-compact" id="robustness">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3">Robust to the Choices Behind the Scenes</h2>
+      <span class="section-divider"></span>
+
+      <div class="figure-solo">
+        <img src="./static/figs/fig5_robustness.png" alt="Three robustness checks: sweeping the concept-selection threshold, injecting noisy concepts, and shuffling class order, all in the class-incremental CIFAR-100 setting.">
+      </div>
+
+      <div class="figure-caption">
+        Three stress tests probe whether SACK's gains depend on a fragile setup. Sweeping the concept-selection
+        threshold (left) shows the SACK-guided curve holding its advantage over the baseline across a wide
+        operating range, rather than at one hand-picked setting. Deliberately injecting nonsense concepts into the
+        vocabulary (center) leaves the accuracy trajectory essentially unchanged, since the thresholding step
+        already filters out irrelevant signal. And reshuffling which classes appear in which experience (right)
+        still produces a SACK-guided curve that tracks above its baseline across permutations, not just under the
+        one ordering used elsewhere in the paper.
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Design Choices ===== -->
+  <section class="section section-compact" id="design-choices">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3">The Idea Doesn't Depend on a Single Prioritization Schema</h2>
+      <span class="section-divider"></span>
+
+      <div class="figure-solo">
+        <img src="./static/figs/fig7_aggregation.png" alt="Comparing several ways to aggregate concept similarity into a class weight, all tested against the iCaRL baseline in both class- and task-incremental settings.">
+      </div>
+      <div class="figure-caption">
+        The class weight at the heart of SACK is a design choice, not a fixed formula, concept similarities can be
+        aggregated with a simple maximum, an average, or a softer softmax-style blend. Every variant tested
+        improves over the baseline in both settings, and the softer aggregations, which preserve evidence from
+        several high-similarity concepts rather than committing to a single best match, edge out the paper's own
+        default, evidence that it's the idea, not the specific formula, doing the work.
+      </div>
+
+      <div class="figure-solo">
+        <img src="./static/figs/fig8_interpolation_ece_longtail.png" alt="Three further checks: comparing curriculum interpolation schedules, tracking confidence calibration, and evaluating performance under long-tailed class distributions.">
+      </div>
+      <div class="figure-caption">
+        Three further checks on the recipe itself. Comparing the paper's default schedule, concept-weighted
+        sampling early, relaxing to uniform sampling later, against reversed and randomized alternatives (a)
+        shows that the direction matters: starting from what the model already knows and gradually exploring
+        outward outperforms starting from uniform sampling or from a deliberately inverted ranking. Confidence
+        calibration, measured on early data as the model keeps learning new experiences (b), holds steady or
+        improves under SACK across every logit-based baseline. And on an artificially long-tailed version of
+        CIFAR-100, where classes arrive with sharply uneven numbers of examples (c), the SACK-guided curriculum
+        still comes out ahead across regularization-, replay-, and prompt-based methods alike.
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Broader Evidence ===== -->
+  <section class="section section-compact" id="broader-evidence">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3">Holding Up Under Further Adversarial Conditions</h2>
+      <span class="section-divider"></span>
+      <p class="section-intro">Four more checks, each run in a setting not already shown above, tell the same
+      story from a different angle.</p>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <div class="img-frame">
+            <img src="./static/figs/fig9_corruptions.png" alt="Accuracy across the experience stream under contrast loss, frost, and JPEG compression corruptions at several severities, comparing iCaRL with and without SACK.">
+          </div>
+          <div class="cap">Image corruptions</div>
+          <div class="note">Under contrast loss, frost, and JPEG compression at several severities, the SACK-guided
+          model keeps a visible edge at mild-to-moderate corruption, converging with the baseline only once the
+          underlying signal itself has mostly degraded.</div>
+        </div>
+        <div class="gallery-item">
+          <div class="img-frame">
+            <img src="./static/figs/fig10_threshold_baselines.png" alt="Sweeping the concept-selection threshold across four additional continual learning baselines: LwF, CODA-Prompt, DER, and DER++.">
+          </div>
+          <div class="cap">Threshold, across baselines</div>
+          <div class="note">The same insensitivity to the concept-selection threshold seen on the paper's main
+          baseline reappears across a regularization method, a prompt-based method, and two further replay
+          methods.</div>
+        </div>
+        <div class="gallery-item">
+          <div class="img-frame">
+            <img src="./static/figs/fig11_order_robustness.png" alt="Class-order permutation robustness across four continual learning baselines: LwF, CODA-Prompt, DER, and DER++.">
+          </div>
+          <div class="cap">Class order, across baselines</div>
+          <div class="note">Across independently shuffled class orders and four different backbone methods, the
+          SACK-guided curve sits above its baseline with tighter variability across permutations, not just a
+          higher average.</div>
+        </div>
+        <div class="gallery-item">
+          <div class="img-frame">
+            <img src="./static/figs/fig12_inaturalist.png" alt="Class-incremental results on a 300-class subset of the naturally long-tailed iNaturalist dataset, comparing iCaRL with and without SACK.">
+          </div>
+          <div class="cap">A larger, messier benchmark</div>
+          <div class="note">On a large, naturally long-tailed slice of iNaturalist, the same advantage persists —
+          evidence the effect isn't an artifact of the smaller, curated benchmarks used elsewhere.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BibTeX ===== -->
+  <section class="section bibtex-section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title has-text-centered">BibTeX</h2>
+      <span class="section-divider"></span>
+      <p class="bibtex-note">Proceedings details (volume, pages) are TBD and will be updated once available.</p>
+      <div class="bibtex-block">
+        <button class="bibtex-copy-btn" onclick="copyBibtex()" id="copyBtn">Copy</button>
+<pre><code id="bibtexCode"> TBD
+
+</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container has-text-centered">
+      <p>
+        This website is adapted from <a href="https://nerfies.github.io/">Nerfies</a> and <a href="https://mathvista.github.io/">MathVista</a>,
+        licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+  function copyBibtex() {
+    var code = document.getElementById('bibtexCode').textContent;
+    navigator.clipboard.writeText(code).then(function() {
+      var btn = document.getElementById('copyBtn');
+      btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+    });
+  }
+  </script>
+
+</body>
+</html>
