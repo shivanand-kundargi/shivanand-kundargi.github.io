@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Multi-Agent Systems and Learning — Reading Group</title>
-<meta name="description" content="A seven-session reading group on multi-agent learning and systems. One ~1-hour lecture per session, drawn from Yale, Berkeley, Princeton, Cornell, CMU, and the Simons Institute.">
+<meta name="description" content="An eight-session reading group on multi-agent systems and learning, with lectures and supplementary materials from leading researchers and institutions.">
 <style>
   :root {
     --paper: #f8f8f6;
@@ -108,7 +108,8 @@
   .s-title { font-weight: 600; display: block; }
   .scope { font-size: 0.85rem; color: var(--muted); margin-top: 0.25rem; }
 
-  .video a { font-weight: 600; }
+  .video a { display: block; font-weight: 600; }
+  .video a + a { margin-top: 0.7rem; }
   .video a::before { content: "▶ "; font-size: 0.75em; }
   .video .src { display: block; font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
   .no-video { color: var(--muted); font-style: italic; }
@@ -155,15 +156,13 @@
 
   <header>
     <h1>Multi-Agent Systems and Learning</h1>
-    <p class="subtitle">A reading group in seven sessions</p>
+    <p class="subtitle"></p>
     <div class="intro">
-      <p>Each session is built around a single lecture that can be watched and understood in about an hour, drawn from Yale, UC Berkeley, Princeton, Cornell, CMU, and the Simons Institute. Supplementary materials — full courses, textbooks, and the papers behind each idea — are listed for anyone who wants to go deeper between meetings.</p>
-      <p>We begin with reinforcement learning, build up through multi-agent RL and cooperation, and close with the game-theoretic lens and the problem of evaluation.</p>
     </div>
   </header>
 
   <table>
-    <caption>Schedule</caption>
+    <caption>Tentative Schedule</caption>
     <thead>
       <tr>
         <th class="col-session" scope="col">Session</th>
@@ -176,6 +175,21 @@
       <tr>
         <td>
           <span class="num">1</span>
+          <span class="s-title">Formal definitions and introduction</span>
+          <p class="scope">Multi-agent systems before and after the emergence of large language models</p>
+        </td>
+        <td class="video">
+          <a href="https://youtu.be/VwQ132JpOjs?is=6p0qQz2YBB2shc6R" target="_blank" rel="noopener">Pre-LLM era definition</a>
+          <a href="https://youtu.be/ixLXrgF77ME?is=IkI0hF8ghxxmOQnd" target="_blank" rel="noopener">Post-LLM era definition</a>
+        </td>
+        <td class="supp-cell">
+          <span class="no-video">—</span>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <span class="num">2</span>
           <span class="s-title">RL foundations</span>
           <p class="scope">MDPs, Bellman equations, value and policy iteration</p>
         </td>
@@ -195,7 +209,7 @@
 
       <tr>
         <td>
-          <span class="num">2</span>
+          <span class="num">3</span>
           <span class="s-title">MARL models &amp; solution concepts</span>
           <p class="scope">Markov games, best response, Nash equilibrium</p>
         </td>
@@ -213,7 +227,7 @@
 
       <tr>
         <td>
-          <span class="num">3</span>
+          <span class="num">4</span>
           <span class="s-title">MARL algorithms</span>
           <p class="scope">Self-play, CTDE, value decomposition, policy gradients</p>
         </td>
@@ -234,7 +248,7 @@
 
       <tr>
         <td>
-          <span class="num">4</span>
+          <span class="num">5</span>
           <span class="s-title">Cooperation &amp; incentives</span>
           <p class="scope">Social dilemmas, zero-shot coordination, opponent shaping</p>
         </td>
@@ -256,7 +270,7 @@
 
       <tr>
         <td>
-          <span class="num">5</span>
+          <span class="num">6</span>
           <span class="s-title">Multimodal agents</span>
           <p class="scope">LLM and vision-language agents acting in real environments</p>
         </td>
@@ -274,7 +288,7 @@
 
       <tr>
         <td>
-          <span class="num">6</span>
+          <span class="num">7</span>
           <span class="s-title">From agents to equilibria: the game-theoretic lens</span>
           <p class="scope">Equilibria, no-regret learning, what learning agents converge to</p>
         </td>
@@ -297,7 +311,7 @@
 
       <tr>
         <td>
-          <span class="num">7</span>
+          <span class="num">8</span>
           <span class="s-title">Evaluation</span>
           <p class="scope">Exploitability, Elo pitfalls, empirical game-theoretic analysis</p>
         </td>
