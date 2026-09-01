@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi-Agent Systems and Learning — Reading Group</title>
+<meta name="description" content="A seven-session reading group on multi-agent learning and systems. One ~1-hour lecture per session, drawn from Yale, Berkeley, Princeton, Cornell, CMU, and the Simons Institute.">
+<style>
+  :root {
+    --paper: #f8f8f6;
+    --ink: #1c2430;
+    --muted: #5d6673;
+    --accent: #0f6e56;
+    --accent-dark: #085041;
+    --line: #dcdcd4;
+    --row: #ffffff;
+    --serif: "Charter", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #14181d;
+      --ink: #e8e8e3;
+      --muted: #9aa3ad;
+      --accent: #4fc39d;
+      --accent-dark: #7ad8ba;
+      --line: #2b323a;
+      --row: #1a1f26;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 3.5rem 1.25rem 5rem;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; }
+
+  header { margin-bottom: 2.75rem; }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+  .intro {
+    max-width: 62ch;
+    margin-top: 1.25rem;
+    color: var(--ink);
+  }
+  .intro p + p { margin-top: 0.6rem; }
+
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+  a:hover { border-bottom-color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: var(--row);
+    border: 1px solid var(--line);
+  }
+  caption {
+    text-align: left;
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding-bottom: 0.75rem;
+  }
+  thead th {
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--muted);
+    border-bottom: 2px solid var(--ink);
+    padding: 0.6rem 0.9rem;
+  }
+  tbody td {
+    vertical-align: top;
+    padding: 1.1rem 0.9rem 1.2rem;
+    border-bottom: 1px solid var(--line);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+
+  .col-session { width: 30%; }
+  .col-video { width: 32%; }
+
+  .num {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+  .s-title { font-weight: 600; display: block; }
+  .scope { font-size: 0.85rem; color: var(--muted); margin-top: 0.25rem; }
+
+  .video a { font-weight: 600; }
+  .video a::before { content: "▶ "; font-size: 0.75em; }
+  .video .src { display: block; font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
+  .no-video { color: var(--muted); font-style: italic; }
+
+  ul.supp { list-style: none; font-size: 0.9rem; }
+  ul.supp li { display: inline; }
+  ul.supp li + li::before { content: ",  "; color: var(--muted); }
+  .plain { color: var(--ink); }
+
+  .note {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    max-width: 70ch;
+  }
+
+  @media (max-width: 720px) {
+    thead { display: none; }
+    table, tbody, tr, td { display: block; width: 100%; }
+    tbody tr { border-bottom: 1px solid var(--line); padding: 0.4rem 0; }
+    tbody td { border-bottom: none; padding: 0.5rem 0.9rem; }
+    td.video::before {
+      content: "Watch (~1 hr)";
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 0.15rem;
+    }
+    td.supp-cell::before {
+      content: "Supplementary";
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 0.15rem;
+    }
+    .col-session, .col-video { width: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Multi-Agent Systems and Learning</h1>
+    <p class="subtitle">A reading group in seven sessions</p>
+    <div class="intro">
+      <p>Each session is built around a single lecture that can be watched and understood in about an hour, drawn from Yale, UC Berkeley, Princeton, Cornell, CMU, and the Simons Institute. Supplementary materials — full courses, textbooks, and the papers behind each idea — are listed for anyone who wants to go deeper between meetings.</p>
+      <p>We begin with reinforcement learning, build up through multi-agent RL and cooperation, and close with the game-theoretic lens and the problem of evaluation.</p>
+    </div>
+  </header>
+
+  <table>
+    <caption>Schedule</caption>
+    <thead>
+      <tr>
+        <th class="col-session" scope="col">Session</th>
+        <th class="col-video" scope="col">Watch (~1 hr)</th>
+        <th scope="col">Supplementary materials</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td>
+          <span class="num">1</span>
+          <span class="s-title">RL foundations</span>
+          <p class="scope">MDPs, Bellman equations, value and policy iteration</p>
+        </td>
+        <td class="video">
+          <a href="https://www.youtube.com/watch?v=2GwBez0D20A" target="_blank" rel="noopener">Abbeel — MDPs &amp; exact solution methods (L1)</a>
+          <span class="src">UC Berkeley, Foundations of Deep RL</span>
+        </td>
+        <td class="supp-cell">
+          <ul class="supp">
+            <li><a href="https://youtube.com/playlist?list=PLwRJQ4m4UJjNymuBM9RdmB3Z9N5-0IlY0" target="_blank" rel="noopener">Full Abbeel series (6 × ~1 hr)</a></li>
+            <li><a href="https://www.davidsilver.uk/teaching/" target="_blank" rel="noopener">Silver's RL course (UCL/DeepMind)</a></li>
+            <li><a href="https://rail.eecs.berkeley.edu/deeprlcourse/" target="_blank" rel="noopener">CS285 (Berkeley)</a></li>
+            <li><a href="http://incompleteideas.net/book/the-book-2nd.html" target="_blank" rel="noopener">Sutton &amp; Barto, ch. 3–6</a></li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <span class="num">2</span>
+          <span class="s-title">MARL models &amp; solution concepts</span>
+          <p class="scope">Markov games, best response, Nash equilibrium</p>
+        </td>
+        <td class="video">
+          <a href="https://simons.berkeley.edu/talks/multi-agent-reinforcement-learning-part-i" target="_blank" rel="noopener">Chi Jin — Multi-agent RL, Part I</a>
+          <span class="src">Princeton, at the Simons Institute</span>
+        </td>
+        <td class="supp-cell">
+          <ul class="supp">
+            <li><a href="https://www.marl-book.com" target="_blank" rel="noopener">MARL book (free), ch. 3–4</a></li>
+            <li><a href="https://github.com/marl-book/slides" target="_blank" rel="noopener">Book lecture slides</a></li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <span class="num">3</span>
+          <span class="s-title">MARL algorithms</span>
+          <p class="scope">Self-play, CTDE, value decomposition, policy gradients</p>
+        </td>
+        <td class="video">
+          <a href="https://simons.berkeley.edu/talks/multi-agent-reinforcement-learning-part-ii" target="_blank" rel="noopener">Chi Jin — Multi-agent RL, Part II</a>
+          <span class="src">Princeton, at the Simons Institute</span>
+        </td>
+        <td class="supp-cell">
+          <ul class="supp">
+            <li><a href="https://iiia.csic.es/en-us/marl-course/" target="_blank" rel="noopener">IIIA-CSIC course videos (long — split across meetings)</a></li>
+            <li><a href="https://arxiv.org/abs/1706.02275" target="_blank" rel="noopener">MADDPG</a></li>
+            <li><a href="https://arxiv.org/abs/1803.11485" target="_blank" rel="noopener">QMIX</a></li>
+            <li><a href="https://arxiv.org/abs/1711.00832" target="_blank" rel="noopener">PSRO</a></li>
+            <li><span class="plain">Littman 1994, <em>Markov games as a framework for multi-agent RL</em></span></li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <span class="num">4</span>
+          <span class="s-title">Cooperation &amp; incentives</span>
+          <p class="scope">Social dilemmas, zero-shot coordination, opponent shaping</p>
+        </td>
+        <td class="video">
+          <a href="https://www.youtube.com/watch?v=YVTs92Wj3Pg" target="_blank" rel="noopener">Foerster — Zero-shot (human-AI) coordination in Hanabi</a>
+          <span class="src">Toronto/Vector, at the Fields Institute</span>
+        </td>
+        <td class="supp-cell">
+          <ul class="supp">
+            <li><span class="plain">Noam Brown's Cicero/Diplomacy talks (search on YouTube)</span></li>
+            <li><a href="https://arxiv.org/abs/1702.03037" target="_blank" rel="noopener">Sequential social dilemmas</a></li>
+            <li><a href="https://arxiv.org/abs/1902.00506" target="_blank" rel="noopener">Hanabi Challenge</a></li>
+            <li><a href="https://arxiv.org/abs/1709.04326" target="_blank" rel="noopener">LOLA</a></li>
+            <li><a href="https://arxiv.org/abs/2003.02979" target="_blank" rel="noopener">Other-Play</a></li>
+            <li><span class="plain">Cicero, <em>Science</em> 2022</span></li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <span class="num">5</span>
+          <span class="s-title">Multimodal agents</span>
+          <p class="scope">LLM and vision-language agents acting in real environments</p>
+        </td>
+        <td class="video">
+          <a href="https://www.youtube.com/live/RPINOYM12RU?si=WSQbP5ISmMteuWJq" target="_blank" rel="noopener">Salakhutdinov — Multimodal autonomous AI agents</a>
+          <span class="src">CMU, at Berkeley's Adv. LLM Agents MOOC</span>
+        </td>
+        <td class="supp-cell">
+          <ul class="supp">
+            <li><a href="https://llmagents-learning.org" target="_blank" rel="noopener">Berkeley LLM Agents MOOC (full lecture series)</a></li>
+            <li><a href="https://arxiv.org/abs/1909.07528" target="_blank" rel="noopener">Emergent tool use (hide-and-seek)</a></li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <span class="num">6</span>
+          <span class="s-title">From agents to equilibria: the game-theoretic lens</span>
+          <p class="scope">Equilibria, no-regret learning, what learning agents converge to</p>
+        </td>
+        <td class="video">
+          <a href="https://simons.berkeley.edu/workshops/learning-games-boot-camp/schedule" target="_blank" rel="noopener">Tardos — Learning as a solution concept, Part I</a>
+          <span class="src">Cornell, at the Simons Institute</span>
+        </td>
+        <td class="supp-cell">
+          <ul class="supp">
+            <li><a href="https://simons.berkeley.edu/workshops/learning-games-boot-camp/schedule" target="_blank" rel="noopener">Daskalakis — Min-max optimization, Part I (same page)</a></li>
+            <li><a href="https://simons.berkeley.edu/news/learning-incentives-learning-games-boot-camp" target="_blank" rel="noopener">Haghtalab — Learning and incentives (Berkeley, Simons)</a></li>
+            <li><a href="https://oyc.yale.edu/economics/econ-159" target="_blank" rel="noopener">Polak's Yale game theory course (L1, L4–6)</a></li>
+            <li><a href="http://timroughgarden.org" target="_blank" rel="noopener">Roughgarden's algorithmic game theory lectures</a></li>
+            <li><a href="http://www.masfoundations.org" target="_blank" rel="noopener">Shoham &amp; Leyton-Brown (free)</a></li>
+            <li><span class="plain">Fudenberg &amp; Levine, <em>The Theory of Learning in Games</em></span></li>
+            <li><span class="plain">Neller &amp; Lanctot, CFR tutorial</span></li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <span class="num">7</span>
+          <span class="s-title">Evaluation</span>
+          <p class="scope">Exploitability, Elo pitfalls, empirical game-theoretic analysis</p>
+        </td>
+        <td class="video">
+          <span class="no-video">Paper discussion — no lecture</span>
+        </td>
+        <td class="supp-cell">
+          <ul class="supp">
+            <li><a href="https://arxiv.org/abs/1806.02643" target="_blank" rel="noopener">Re-evaluating evaluation</a></li>
+            <li><a href="https://arxiv.org/abs/1903.01373" target="_blank" rel="noopener">α-Rank</a></li>
+            <li><a href="https://github.com/google-deepmind/open_spiel" target="_blank" rel="noopener">OpenSpiel</a></li>
+          </ul>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <p class="note">All links point to the original sources: Open Yale Courses, the Simons Institute at UC Berkeley, arXiv, GitHub, and freely available textbook editions. Lectures marked with a source page (Simons) host their video directly on the linked page.</p>
+
+</div>
+</body>
+</html>
