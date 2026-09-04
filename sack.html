@@ -207,13 +207,11 @@
       </div>
 
       <div class="figure-caption">
-        Three stress tests probe whether SACK's gains depend on a fragile setup. Sweeping the concept-selection
-        threshold (left) shows the SACK-guided curve holding its advantage over the baseline across a wide
-        operating range, rather than at one hand-picked setting. Deliberately injecting nonsense concepts into the
+        Sweeping the concept-selection threshold (left) shows the SACK-guided curve holding its advantage over the baseline across a wide
+        operating range. Deliberately injecting noisy concepts into the
         vocabulary (center) leaves the accuracy trajectory essentially unchanged, since the thresholding step
         already filters out irrelevant signal. And reshuffling which classes appear in which experience (right)
-        still produces a SACK-guided curve that tracks above its baseline across permutations, not just under the
-        one ordering used elsewhere in the paper.
+        still produces a SACK-guided curve that tracks above its baseline across permutations.
       </div>
     </div>
   </section>
@@ -228,25 +226,21 @@
         <img src="./static/figs/fig7_aggregation.png" alt="Comparing several ways to aggregate concept similarity into a class weight, all tested against the iCaRL baseline in both class- and task-incremental settings.">
       </div>
       <div class="figure-caption">
-        The class weight at the heart of SACK is a design choice, not a fixed formula, concept similarities can be
+        The concept based scoring is at the heart of SACK and is a design choice, concept similarities can be
         aggregated with a simple maximum, an average, or a softer softmax-style blend. Every variant tested
-        improves over the baseline in both settings, and the softer aggregations, which preserve evidence from
-        several high-similarity concepts rather than committing to a single best match, edge out the paper's own
-        default, evidence that it's the idea, not the specific formula, doing the work.
+        improves over the baseline in both settings.
       </div>
 
       <div class="figure-solo">
         <img src="./static/figs/fig8_interpolation_ece_longtail.png" alt="Three further checks: comparing curriculum interpolation schedules, tracking confidence calibration, and evaluating performance under long-tailed class distributions.">
       </div>
       <div class="figure-caption">
-        Three further checks on the recipe itself. Comparing the paper's default schedule, concept-weighted
-        sampling early, relaxing to uniform sampling later, against reversed and randomized alternatives (a)
-        shows that the direction matters: starting from what the model already knows and gradually exploring
-        outward outperforms starting from uniform sampling or from a deliberately inverted ranking. Confidence
-        calibration, measured on early data as the model keeps learning new experiences (b), holds steady or
-        improves under SACK across every logit-based baseline. And on an artificially long-tailed version of
-        CIFAR-100, where classes arrive with sharply uneven numbers of examples (c), the SACK-guided curriculum
-        still comes out ahead across regularization-, replay-, and prompt-based methods alike.
+        (a) shows that the direction matters: starting from what the model already knows and gradually exploring
+        outward outperforms starting from uniform sampling or from a deliberately inverted ranking among other
+        variants of SACK. (b) Confidence calibration, measured on early data as the model keeps learning new
+        experiences, holds steady or improves under SACK across every logit-based baseline. (c) And on an artificially
+        long-tailed version of CIFAR-100, where classes arrive with uneven numbers of examples, the SACK-
+        guided curriculum still comes out ahead across regularization-, replay-, and prompt-based methods alike.
       </div>
     </div>
   </section>
