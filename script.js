@@ -1,5 +1,184 @@
 // UI interactions
 document.addEventListener('DOMContentLoaded', function() {
+  const root = document.documentElement;
+
+  // ── Theme & Accessibility Controller ────────────────────────
+  const themeToggleBtn = document.getElementById('theme-toggle-btn');
+  const a11yToggleBtn = document.getElementById('a11y-toggle-btn');
+  const a11yMenu = document.getElementById('a11y-menu');
+  const a11yResetBtn = document.getElementById('a11y-reset-btn');
+  const contrastChk = document.getElementById('a11y-contrast-chk');
+  const underlineChk = document.getElementById('a11y-underline-chk');
+  const motionChk = document.getElementById('a11y-motion-chk');
+  const themeOptBtns = document.querySelectorAll('[data-theme-set]');
+  const textSizeBtns = document.querySelectorAll('[data-text-size]');
+
+  function getTheme() {
+    return root.getAttribute('data-theme') || 'night';
+  }
+
+  function setTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    try {
+      localStorage.setItem('portfolio-theme', theme);
+    } catch (e) {}
+
+    if (themeToggleBtn) {
+      const isDay = theme === 'day';
+      themeToggleBtn.setAttribute('aria-label', isDay ? 'Switch to Night mode' : 'Switch to Day mode');
+      themeToggleBtn.setAttribute('title', isDay ? 'Switch to Night mode' : 'Switch to Day mode');
+    }
+
+    themeOptBtns.forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-theme-set') === theme);
+    });
+  }
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', function() {
+      const nextTheme = getTheme() === 'day' ? 'night' : 'day';
+      setTheme(nextTheme);
+    });
+  }
+
+  themeOptBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      setTheme(this.getAttribute('data-theme-set'));
+    });
+  });
+
+  // Text Scaling
+  function setTextScale(scale) {
+    if (scale === 'normal') {
+      root.removeAttribute('data-text-scale');
+    } else {
+      root.setAttribute('data-text-scale', scale);
+    }
+    try {
+      localStorage.setItem('portfolio-text-scale', scale);
+    } catch (e) {}
+
+    textSizeBtns.forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-text-size') === scale);
+    });
+  }
+
+  textSizeBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      setTextScale(this.getAttribute('data-text-size'));
+    });
+  });
+
+  // High Contrast
+  if (contrastChk) {
+    contrastChk.addEventListener('change', function() {
+      const active = this.checked;
+      if (active) {
+        root.setAttribute('data-contrast', 'high');
+      } else {
+        root.removeAttribute('data-contrast');
+      }
+      try {
+        localStorage.setItem('portfolio-contrast', active ? 'high' : 'normal');
+      } catch (e) {}
+    });
+  }
+
+  // Underline Links
+  if (underlineChk) {
+    underlineChk.addEventListener('change', function() {
+      const active = this.checked;
+      if (active) {
+        root.setAttribute('data-underline', 'true');
+      } else {
+        root.removeAttribute('data-underline');
+      }
+      try {
+        localStorage.setItem('portfolio-underline', active ? 'true' : 'false');
+      } catch (e) {}
+    });
+  }
+
+  // Reduce Motion
+  if (motionChk) {
+    motionChk.addEventListener('change', function() {
+      const active = this.checked;
+      if (active) {
+        root.setAttribute('data-reduce-motion', 'true');
+      } else {
+        root.removeAttribute('data-reduce-motion');
+      }
+      try {
+        localStorage.setItem('portfolio-reduce-motion', active ? 'true' : 'false');
+      } catch (e) {}
+    });
+  }
+
+  // Accessibility Dropdown Menu Toggle
+  if (a11yToggleBtn && a11yMenu) {
+    a11yToggleBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isHidden = a11yMenu.hasAttribute('hidden');
+      if (isHidden) {
+        a11yMenu.removeAttribute('hidden');
+        a11yToggleBtn.setAttribute('aria-expanded', 'true');
+      } else {
+        a11yMenu.setAttribute('hidden', '');
+        a11yToggleBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!a11yMenu.contains(e.target) && !a11yToggleBtn.contains(e.target)) {
+        a11yMenu.setAttribute('hidden', '');
+        a11yToggleBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && !a11yMenu.hasAttribute('hidden')) {
+        a11yMenu.setAttribute('hidden', '');
+        a11yToggleBtn.setAttribute('aria-expanded', 'false');
+        a11yToggleBtn.focus();
+      }
+    });
+  }
+
+  // Reset to Defaults
+  if (a11yResetBtn) {
+    a11yResetBtn.addEventListener('click', function() {
+      setTheme('night');
+      setTextScale('normal');
+      if (contrastChk) contrastChk.checked = false;
+      if (underlineChk) underlineChk.checked = false;
+      if (motionChk) motionChk.checked = false;
+      root.removeAttribute('data-contrast');
+      root.removeAttribute('data-underline');
+      root.removeAttribute('data-reduce-motion');
+      try {
+        localStorage.removeItem('portfolio-theme');
+        localStorage.removeItem('portfolio-text-scale');
+        localStorage.removeItem('portfolio-contrast');
+        localStorage.removeItem('portfolio-underline');
+        localStorage.removeItem('portfolio-reduce-motion');
+      } catch (e) {}
+    });
+  }
+
+  // Sync initial UI with active state
+  const initialTheme = root.getAttribute('data-theme') || 'night';
+  themeOptBtns.forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-theme-set') === initialTheme);
+  });
+  const initialScale = root.getAttribute('data-text-scale') || 'normal';
+  textSizeBtns.forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-text-size') === initialScale);
+  });
+  if (contrastChk) contrastChk.checked = root.getAttribute('data-contrast') === 'high';
+  if (underlineChk) underlineChk.checked = root.getAttribute('data-underline') === 'true';
+  if (motionChk) motionChk.checked = root.getAttribute('data-reduce-motion') === 'true';
+
+  // ── Existing Navigation & Interactions ──────────────────────
   const navToggle = document.getElementById('nav-toggle');
   const navLinks = document.getElementById('nav-links');
 

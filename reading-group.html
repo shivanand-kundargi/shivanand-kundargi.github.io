@@ -10,6 +10,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('portfolio-theme') || 'night';
+        document.documentElement.setAttribute('data-theme', theme);
+        var scale = localStorage.getItem('portfolio-text-scale');
+        if (scale && scale !== 'normal') document.documentElement.setAttribute('data-text-scale', scale);
+        if (localStorage.getItem('portfolio-contrast') === 'high') document.documentElement.setAttribute('data-contrast', 'high');
+        if (localStorage.getItem('portfolio-underline') === 'true') document.documentElement.setAttribute('data-underline', 'true');
+        if (localStorage.getItem('portfolio-reduce-motion') === 'true') document.documentElement.setAttribute('data-reduce-motion', 'true');
+      } catch (e) {}
+    })();
+  </script>
   <style>
     /* Reading group specific styles */
     .rg-hero {

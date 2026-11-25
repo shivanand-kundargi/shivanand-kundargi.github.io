@@ -24,6 +24,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('portfolio-theme') || 'night';
+        document.documentElement.setAttribute('data-theme', theme);
+        var scale = localStorage.getItem('portfolio-text-scale');
+        if (scale && scale !== 'normal') document.documentElement.setAttribute('data-text-scale', scale);
+        if (localStorage.getItem('portfolio-contrast') === 'high') document.documentElement.setAttribute('data-contrast', 'high');
+        if (localStorage.getItem('portfolio-underline') === 'true') document.documentElement.setAttribute('data-underline', 'true');
+        if (localStorage.getItem('portfolio-reduce-motion') === 'true') document.documentElement.setAttribute('data-reduce-motion', 'true');
+      } catch (e) {}
+    })();
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -49,17 +62,71 @@
   <nav class="nav" id="navbar-main">
     <div class="container nav-inner">
       <a class="brand" href="index.html">Shivanand Kundargi</a>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <!-- <li><a href="projects.html">Projects</a></li> -->
-        <li><a href="publications.html" aria-current="page">Publications</a></li>
-        <!-- <li><a href="experience.html">Experience</a></li>
-        <li><a href="education.html">Education</a></li> -->
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+      <div class="nav-actions">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <!-- <li><a href="projects.html">Projects</a></li> -->
+          <li><a href="publications.html" aria-current="page">Publications</a></li>
+          <!-- <li><a href="experience.html">Experience</a></li>
+          <li><a href="education.html">Education</a></li> -->
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-controls">
+          <button id="theme-toggle-btn" class="ctrl-btn" type="button" aria-label="Switch to Day mode" title="Switch to Day mode">
+            <svg class="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          </button>
+          
+          <div class="a11y-dropdown-wrap">
+            <button id="a11y-toggle-btn" class="ctrl-btn" type="button" aria-label="Accessibility settings" title="Accessibility settings" aria-expanded="false" aria-controls="a11y-menu">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2"/><path d="m4 8 8 2 8-2M12 10v7M8 21l4-4 4 4"/></svg>
+            </button>
+            
+            <div id="a11y-menu" class="a11y-menu" role="region" aria-label="Accessibility options" hidden>
+              <div class="a11y-header">
+                <span class="a11y-title">Accessibility</span>
+                <button type="button" id="a11y-reset-btn" class="a11y-reset">Reset</button>
+              </div>
+
+              <div class="a11y-group">
+                <span class="a11y-label">Theme</span>
+                <div class="a11y-btn-row">
+                  <button type="button" class="a11y-opt-btn" data-theme-set="day">☀️ Day</button>
+                  <button type="button" class="a11y-opt-btn" data-theme-set="night">🌙 Night</button>
+                </div>
+              </div>
+
+              <div class="a11y-group">
+                <span class="a11y-label">Text Size</span>
+                <div class="a11y-btn-row">
+                  <button type="button" class="a11y-opt-btn" data-text-size="normal">100%</button>
+                  <button type="button" class="a11y-opt-btn" data-text-size="large">115%</button>
+                  <button type="button" class="a11y-opt-btn" data-text-size="xlarge">130%</button>
+                </div>
+              </div>
+
+              <div class="a11y-group a11y-toggles">
+                <label class="a11y-toggle-item">
+                  <span>High Contrast</span>
+                  <input type="checkbox" id="a11y-contrast-chk">
+                </label>
+                <label class="a11y-toggle-item">
+                  <span>Underline Links</span>
+                  <input type="checkbox" id="a11y-underline-chk">
+                </label>
+                <label class="a11y-toggle-item">
+                  <span>Reduce Motion</span>
+                  <input type="checkbox" id="a11y-motion-chk">
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
