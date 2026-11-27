@@ -157,3 +157,12 @@ This project is open source and available under the [MIT License](LICENSE).
 ---
 
 **Note**: Remember to update all placeholder information (email, social links, project details, etc.) with your actual information before deploying!
+
+### Research notes
+
+`notes.html` lists notes under visible category headings, with a table of contents.
+Each entry opens its own page at `note.html?id=<note-id>`. In Author Mode,
+choose an existing category or type a new category name when creating or editing
+a note. Categories sort alphabetically; notes within each category sort newest first.
+The content lives in `data/notes.json`; each note has a single `category` field.
+Publishing a note automatically adds its page link to the matching category.

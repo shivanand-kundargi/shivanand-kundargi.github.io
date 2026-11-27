@@ -1867,3 +1867,42 @@ button:focus-visible {
   .pub-thumb { background: #fff; }
   .animate-in { opacity: 1; transform: none; }
 }
+
+/* Notes directory and individual note pages */
+.notes-toc {
+  margin: 1.5rem 0 2.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.notes-toc:empty { display: none; }
+.notes-toc h3 { margin: 0 0 1rem; }
+.notes-toc ul { margin: 0; padding-left: 1.25rem; }
+.notes-toc li + li { margin-top: .65rem; }
+.notes-toc a, .notes-chapter-title, .notes-back-link { text-underline-offset: .2em; }
+.notes-directory { display: block; }
+.notes-category { margin-bottom: 2.5rem; scroll-margin-top: 6rem; }
+.notes-category > h3 {
+  font-size: 1.4rem;
+  padding-bottom: .8rem;
+  border-bottom: 1px solid var(--border);
+}
+.notes-category > h3 span { font-size: .9rem; font-weight: 400; margin-left: .5rem; }
+.notes-chapter-list { list-style: none; padding: 0; margin: 0; }
+.notes-chapter-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.notes-chapter-title { font-size: 1.1rem; font-weight: 600; }
+.notes-chapter-list p { margin: .5rem 0 0; }
+.notes-chapter-list time { white-space: nowrap; font-size: .9rem; }
+.notes-back-link { display: inline-block; margin-bottom: 1.5rem; }
+[data-page="note"] .notes-controls-box { display: none; }
+[data-page="note"] .note-content-rendered { overflow-wrap: anywhere; }
+[data-page="note"] .note-content-rendered pre { overflow-x: auto; }
+@media (max-width: 600px) {
+  .notes-chapter-list li { flex-direction: column; gap: .5rem; }
+}
